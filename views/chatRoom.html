@@ -1,0 +1,46 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <title><%= title %> - Microblog</title> 
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' /> 
+    <style type="text/css"> 
+      body { 
+        padding-top: 60px; 
+        padding-bottom: 40px; 
+      } 
+    </style> 
+    <link href="stylesheets/bootstrap-responsive.css" rel="stylesheet"> 
+</head>
+<body>
+    <div class="well" id="chartMessage"></div>
+
+    <input type="text" size="20" id="messageBox"/>
+    <button onclick="sendMessage()">send</button>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket=io.connect();
+        socket.on('online',function(data){
+            $("#chartMessage").append($('<li>'+data.user+'上线</li>'));
+        });
+        socket.on('offline',function(data){
+            $("#chartMessage").append($('<li>'+data.user+'下线</li>'));
+        });
+        socket.on('message',function(data){
+            $("#chartMessage").append($('<li>'+data.user+'说：'+data.msg+'</li>'));
+        })
+    </script>
+    <%if(user){%>
+    <script>
+        socket.emit('online',{user:"<%=user.name%>"});
+        function sendMessage(){ 
+            var message=$("#messageBox").val();
+            if(message!=null){
+                socket.emit('message',{user:"<%=user.name%>",msg:message});
+            }
+        }
+    </script>
+    <%}%>
+</body> 
+    <script src="/javascripts/jquery.js"></script>
+    <script src="/javascripts/bootstrap.min.js"></script>
+</html>
