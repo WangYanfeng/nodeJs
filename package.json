@@ -1,25 +1,14 @@
 {
-<<<<<<< HEAD
+
     "name": "application-name",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "private": true,
+    "author": "WangYanfeng",
     "scripts": {
-    "start": "node app.js"
-  },
+        "start": "node index.js"
+    },
     "dependencies": {
     "express": "3.4.8" ,
 	"ejs":"*"}
 }
-=======
-    "name": "bae-nodejs",
-    "version": "1.0.0",
-    "author": "bae",
-    "description": "The first bae nodejs app!",
-    "scripts": {
-        "start": "node server.js"
-    },
-    "dependencies": {
-    }
-}
 
->>>>>>> 8cd18edb55463c990fcbe0982d3e33b94fb9e1d5
